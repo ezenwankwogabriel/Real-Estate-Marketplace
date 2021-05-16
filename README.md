@@ -691,16 +691,6 @@ Name on OpenSea: "gabbyAng"
 Address: 0x24033467AA87ec97507F0bBc6D73ea9F9cc09496
 Name on OpenSea: "gabbyAng"
 ## Tx Hashes for Selling Operations of 5 tokens:
-1. 0x39b3bda0b0174789e0bfbbb105c30ed8424c98db2462e90c326d7ed97deecc34
-2. 0x4c7ba22dcdadb244bf94866e9f81e255cb05454d359ae76fd5df9ff199bebd1b
-3. 0x137e14843c56f01a040292d503b1b7e024e8f3c625e266b87d32258cafc0b52e
-4. 0xb88606775a01b18f50342ee55b6207f1865d2666be43231761cebb7739d92514
-5. 0xb3dbfafa6dce56f205f80cac9efc85b03cfb98ad9e5e88e1ca96f77069927cc8
 
 ## Storefront Links for Unsold Tokens:
-1. https://rinkeby.opensea.io/assets/0xbd4ccba610fac0625c430459bc756bc6ace0e647/11
-2. https://rinkeby.opensea.io/assets/0xbd4ccba610fac0625c430459bc756bc6ace0e647/18
-3. https://rinkeby.opensea.io/assets/0xbd4ccba610fac0625c430459bc756bc6ace0e647/15
-4. https://rinkeby.opensea.io/assets/0xbd4ccba610fac0625c430459bc756bc6ace0e647/14
-5. https://rinkeby.opensea.io/assets/0xbd4ccba610fac0625c430459bc756bc6ace0e647/21
  
