@@ -1,0 +1,168 @@
+{
+  "contractName": "Verifier",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/mymac/Documents/Projects/blockchain/token/Blockchain-Capstone/eth-contracts/contracts/SolnSquareVerifier.sol\":\"Verifier\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/mymac/Documents/Projects/blockchain/token/Blockchain-Capstone/eth-contracts/contracts/SolnSquareVerifier.sol\":{\"keccak256\":\"0x3a5799282131257ec61ef008dcddc2ba1c96831d7bb34e29a9e3dae54b3bd369\",\"urls\":[\"bzz-raw://52ffa394562d6ad91c73c509ebb068a18f158694240fd09ef01885d5ad5ce2bf\",\"dweb:/ipfs/QmYUToHFpewPAga8HndkzepkJ9NDafwqs2bjekiH6ZDpkq\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a7231582083ecd6bf4a8bba8ec9cca0c890698c9ba7ff601bb90ce8846aaded8363518e6564736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a7231582083ecd6bf4a8bba8ec9cca0c890698c9ba7ff601bb90ce8846aaded8363518e6564736f6c63430005100032",
+  "sourceMap": "141:22:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;141:22:2;;;;;;;",
+  "deployedSourceMap": "141:22:2:-;;;;;",
+  "source": "pragma solidity >=0.4.21 <0.6.0;\n\n// TODO define a contract call to the zokrates generated solidity contract <Verifier> or <renamedVerifier>\ncontract Verifier {\n\n}\n\n\n// TODO define another contract named SolnSquareVerifier that inherits from your ERC721Mintable class\ncontract SolnSquareVerifier {\n  \n}\n\n\n// TODO define a solutions struct that can hold an index & an address\n\n\n// TODO define an array of the above struct\n\n\n// TODO define a mapping to store unique solutions submitted\n\n\n\n// TODO Create an event to emit when a solution is added\n\n\n\n// TODO Create a function to add the solutions to the array and emit the event\n\n\n\n// TODO Create a function to mint new NFT only after the solution has been verified\n//  - make sure the solution is unique (has not been used before)\n//  - make sure you handle metadata as well as tokenSuplly\n\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "sourcePath": "/Users/mymac/Documents/Projects/blockchain/token/Blockchain-Capstone/eth-contracts/contracts/SolnSquareVerifier.sol",
+  "ast": {
+    "absolutePath": "/Users/mymac/Documents/Projects/blockchain/token/Blockchain-Capstone/eth-contracts/contracts/SolnSquareVerifier.sol",
+    "exportedSymbols": {
+      "SolnSquareVerifier": [
+        7366
+      ],
+      "Verifier": [
+        7365
+      ]
+    },
+    "id": 7367,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7364,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".21",
+          "<",
+          "0.6",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:32:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7365,
+        "linearizedBaseContracts": [
+          7365
+        ],
+        "name": "Verifier",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 7367,
+        "src": "141:22:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 7366,
+        "linearizedBaseContracts": [
+          7366
+        ],
+        "name": "SolnSquareVerifier",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 7367,
+        "src": "268:34:2"
+      }
+    ],
+    "src": "0:868:2"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/mymac/Documents/Projects/blockchain/token/Blockchain-Capstone/eth-contracts/contracts/SolnSquareVerifier.sol",
+      "exportedSymbols": {
+        "SolnSquareVerifier": [
+          7366
+        ],
+        "Verifier": [
+          7365
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".21",
+            "<",
+            "0.6",
+            ".0"
+          ]
+        },
+        "id": 7364,
+        "name": "PragmaDirective",
+        "src": "0:32:2"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            7365
+          ],
+          "name": "Verifier",
+          "nodes": [
+            null
+          ],
+          "scope": 7367
+        },
+        "id": 7365,
+        "name": "ContractDefinition",
+        "src": "141:22:2"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            7366
+          ],
+          "name": "SolnSquareVerifier",
+          "nodes": [
+            null
+          ],
+          "scope": 7367
+        },
+        "id": 7366,
+        "name": "ContractDefinition",
+        "src": "268:34:2"
+      }
+    ],
+    "id": 7367,
+    "name": "SourceUnit",
+    "src": "0:868:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-12T04:22:25.342Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
