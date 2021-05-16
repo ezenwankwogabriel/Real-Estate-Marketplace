@@ -5,45 +5,70 @@ import 'openzeppelin-solidity/contracts/drafts/Counters.sol';
 import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
 import 'openzeppelin-solidity/contracts/token/ERC721/IERC721Receiver.sol';
 import "./Oraclize.sol";
+import './Context.sol';
 
-contract Ownable {
-    //  TODO's
-    //  1) create a private '_owner' variable of type address with a public getter function
-    //  2) create an internal constructor that sets the _owner var to the creater of the contract 
-    //  3) create an 'onlyOwner' modifier that throws if called by any account other than the owner.
-    //  4) fill out the transferOwnership function
-    //  5) create an event that emits anytime ownerShip is transfered (including in the constructor)
-
-    using Address for address;
-    
+contract Ownable is Context {
     address private _owner;
 
-    constructor() public {
-        _owner = msg.sender;
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+    /**
+     * @dev Initializes the contract setting the deployer as the initial owner.
+     */
+    constructor () internal {
+        _owner = _msgSender();
+        emit OwnershipTransferred(address(0), _owner);
     }
 
-    // modifier onlyOwner() {
-    //     require(msg.sender == _owner, 'Only contract owner can call this function');
-    //     _;
-    // }
-
-    modifier onlyOwner () {
-        require(msg.sender == _owner, "only the contract owner can call this function");
-        _;
-    }
-
-    event OwnershipTransfered(address owner);
-
-    function getOwner() public view returns (address) {
+    /**
+     * @dev Returns the address of the current owner.
+     */
+    function owner() public view returns (address) {
         return _owner;
     }
 
+    /**
+     * @dev Throws if called by any account other than the owner.
+     */
+    modifier onlyOwner() {
+        require(isOwner(), "Ownable: caller is not the owner");
+        _;
+    }
+
+    /**
+     * @dev Returns true if the caller is the current owner.
+     */
+    function isOwner() public view returns (bool) {
+        return _msgSender() == _owner;
+    }
+
+    /**
+     * @dev Leaves the contract without owner. It will not be possible to call
+     * `onlyOwner` functions anymore. Can only be called by the current owner.
+     *
+     * NOTE: Renouncing ownership will leave the contract without an owner,
+     * thereby removing any functionality that is only available to the owner.
+     */
+    function renounceOwnership() public onlyOwner {
+        emit OwnershipTransferred(_owner, address(0));
+        _owner = address(0);
+    }
+
+    /**
+     * @dev Transfers ownership of the contract to a new account (`newOwner`).
+     * Can only be called by the current owner.
+     */
     function transferOwnership(address newOwner) public onlyOwner {
-        // TODO add functionality to transfer control of the contract to a newOwner.
-        // make sure the new owner is a real address
-        require(newOwner != address(0));
+        _transferOwnership(newOwner);
+    }
+
+    /**
+     * @dev Transfers ownership of the contract to a new account (`newOwner`).
+     */
+    function _transferOwnership(address newOwner) internal {
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
+        emit OwnershipTransferred(_owner, newOwner);
         _owner = newOwner;
-        emit OwnershipTransfered(newOwner);
     }
 }
 
@@ -167,10 +192,11 @@ contract ERC721 is Pausable, ERC165 {
     function approve(address to, uint256 tokenId) public {
         
         // TODO require the given address to not be the owner of the tokenId
-        require(to != _tokenOwner[tokenId]);
+        require(to != ownerOf(tokenId), 'ERC721: approval to current owner');
 
         // TODO require the msg sender to be the owner of the contract or isApprovedForAll() to be true
-        require(msg.sender == _tokenOwner[tokenId]);
+        // require(msg.sender == _tokenOwner[tokenId]);
+        require( ownerOf(tokenId) == msg.sender || isApprovedForAll(ownerOf(tokenId), msg.sender), "Msg.sender must be owner or isApprovedForAll must be true" );
 
         // TODO add 'to' address to token approvals
         _tokenApprovals[tokenId] = to;
@@ -181,6 +207,7 @@ contract ERC721 is Pausable, ERC165 {
 
     function getApproved(uint256 tokenId) public view returns (address) {
         // TODO return token approval if it exists
+        require(_exists(tokenId), 'Token does not exits');
         return _tokenApprovals[tokenId];
     }
 
@@ -207,9 +234,17 @@ contract ERC721 is Pausable, ERC165 {
     }
 
     function transferFrom(address from, address to, uint256 tokenId) public {
-        require(_isApprovedOrOwner(msg.sender, tokenId));
+        require(ownerOf(tokenId) == from, "ERC721: transfer of token that is not own");
+        require(to != address(0), "ERC721: transfer to the zero address");
 
-        _transferFrom(from, to, tokenId);
+        _clearApproval(tokenId);
+
+        _ownedTokensCount[from].decrement();
+        _ownedTokensCount[to].increment();
+
+        _tokenOwner[tokenId] = to;
+
+        emit Transfer(from, to, tokenId);
     }
 
     function safeTransferFrom(address from, address to, uint256 tokenId) public {
@@ -508,11 +543,11 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
     }
 
     // TODO: create external getter functions for name, symbol, and baseTokenURI
-    function getName() external returns (string memory) {
+    function name() external returns (string memory) {
         return _name;
     }
 
-    function getSymbol() external returns (string memory) {
+    function symbol() external returns (string memory) {
         return _symbol;
     }
 
@@ -534,7 +569,7 @@ contract ERC721Metadata is ERC721Enumerable, usingOraclize {
     // require the token exists before setting
 
     function setTokenURI(uint tokenId) internal returns (string memory) {
-        require(_exists(tokenId));
+        require(_exists(tokenId), 'Token already exists in platform');
         string memory url = strConcat(_baseTokenURI, uint2str(tokenId));
         _tokenURIs[tokenId] = url;
 

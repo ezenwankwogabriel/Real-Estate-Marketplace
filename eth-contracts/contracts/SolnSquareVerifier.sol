@@ -1,4 +1,5 @@
 pragma solidity >=0.4.21 <0.6.0;
+pragma experimental ABIEncoderV2;
 import './SquareVerifier.sol';
 import './ERC721Mintable.sol';
 
@@ -10,7 +11,6 @@ contract SolnSquareVerifier is ERC721MintableComplete {
     address _address;
     bool exists;
   }
-
   SquareVerifier public squareVerifier;
 
   // TODO define an array of the above struct
