@@ -681,10 +681,20 @@ By that, your contracts are deployed and alive on Rinkeby.
     }
   ]
 
+
+# Steps that need to be done before running the tests.
+Start the ganache application and ensure it is running on port 7545
+# Steps and commands to run the tests.
+cd into eth-contracts folder from root folder `cd eth-contracts` 
+run test using command `truffle test`. This would run the ERC721Mintable, SolnSquareVerifier.js and SquareVerifier tests
+
 # Minting new tokens
 From the root folder, run the command `node mint.js`, this would run and mint tokens for the specified number of creatures whose transaction hashes are consoled on the terminal
 
 # Selling Tokens on OpenSea:
+
+# OpenSea MarketPlace Storefront Link
+https://testnets.opensea.io/accounts/Gabyy
 ## Tokens Original Owner (Minter): 
 Address: 0xD3453B04d05dfEBe2C9Db78f0f5aa1df26A03547
 Name on OpenSea: "Gabyy"

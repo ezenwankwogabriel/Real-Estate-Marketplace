@@ -20,10 +20,6 @@ contract('TestSolnSquareVerifier', async(accounts) => {
           let _owner = accounts[0];
           let result = await solutionSV.addSolution(_id, _owner);
           assert.equal(result.logs[0].event, 'SolutionAdded')
-          // truffleAssert.eventEmitted(result, 'SolutionAdded', (ev)=>{
-          //     //The id and owner emitted with the event should equal _id and _owner
-          //     return ev._index == _id && ev._address == _owner;
-          // });
       })
   
       // Test if an ERC721 token can be minted for contract - SolnSquareVerifier
@@ -31,8 +27,10 @@ contract('TestSolnSquareVerifier', async(accounts) => {
         let _id = 123;
         const { proof, inputs } = proofJson;
 
-        var result = await solutionSV.mintNtf.call(_id, proof.a, proof.b, proof.c, inputs);
-        assert.equal(result, true, "Failed to mint a new token"); 
+        var result = await solutionSV.mintNtf(_id, proof.a, proof.b, proof.c, inputs, { from: accounts[0] });
+        assert.equal(result.logs[0].event, 'SolutionAdded', "Failed to add solution"); 
+        assert.equal(result.logs[1].event, 'Transfer', "Failed to transfer to account"); 
+        assert.equal(result.logs[2].event, 'NewTokenMinted', "Failed to mint a new token"); 
       })
     })
   })
