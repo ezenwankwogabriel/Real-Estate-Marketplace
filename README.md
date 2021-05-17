@@ -66,7 +66,23 @@ By that, your contracts are deployed and alive on Rinkeby.
 * Contract's Abi:
 [
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "symbol",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "baseTokenURI",
+          "type": "string"
+        }
+      ],
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "constructor"
@@ -127,30 +143,17 @@ By that, your contracts are deployed and alive on Rinkeby.
         {
           "indexed": true,
           "internalType": "address",
-          "name": "owner",
+          "name": "previousOwner",
           "type": "address"
         },
         {
           "indexed": true,
-          "internalType": "string",
-          "name": "uri",
-          "type": "string"
-        }
-      ],
-      "name": "NewTokenMinted",
-      "type": "event"
-    },
-    {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
           "internalType": "address",
-          "name": "owner",
+          "name": "newOwner",
           "type": "address"
         }
       ],
-      "name": "OwnershipTransfered",
+      "name": "OwnershipTransferred",
       "type": "event"
     },
     {
@@ -312,66 +315,6 @@ By that, your contracts are deployed and alive on Rinkeby.
       "type": "function"
     },
     {
-      "constant": false,
-      "inputs": [],
-      "name": "getBaseTokenURI",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "getName",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "constant": true,
-      "inputs": [],
-      "name": "getOwner",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": false,
-      "inputs": [],
-      "name": "getSymbol",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
       "constant": true,
       "inputs": [
         {
@@ -399,6 +342,36 @@ By that, your contracts are deployed and alive on Rinkeby.
     },
     {
       "constant": true,
+      "inputs": [],
+      "name": "isOwner",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
       "inputs": [
         {
           "internalType": "uint256",
@@ -416,6 +389,15 @@ By that, your contracts are deployed and alive on Rinkeby.
       ],
       "payable": false,
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -578,27 +560,6 @@ By that, your contracts are deployed and alive on Rinkeby.
     },
     {
       "constant": true,
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "tokenId",
-          "type": "uint256"
-        }
-      ],
-      "name": "tokenURI",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "constant": true,
       "inputs": [],
       "name": "totalSupply",
       "outputs": [
@@ -654,43 +615,91 @@ By that, your contracts are deployed and alive on Rinkeby.
     },
     {
       "constant": false,
-      "inputs": [
+      "inputs": [],
+      "name": "name",
+      "outputs": [
         {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "getBaseTokenURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
         {
           "internalType": "uint256",
           "name": "tokenId",
           "type": "uint256"
         }
       ],
-      "name": "mint",
+      "name": "tokenURI",
       "outputs": [
         {
-          "internalType": "bool",
+          "internalType": "string",
           "name": "",
-          "type": "bool"
+          "type": "string"
         }
       ],
       "payable": false,
-      "stateMutability": "nonpayable",
+      "stateMutability": "view",
       "type": "function"
     }
   ]
 
 # Minting new tokens
-Run the command `node mint.js` from the projects root folder, this would run and mint tokens for the specified number of creatures whose transaction hashes are consoled on the terminal
+From the root folder, run the command `node mint.js`, this would run and mint tokens for the specified number of creatures whose transaction hashes are consoled on the terminal
 
 # Selling Tokens on OpenSea:
 ## Tokens Original Owner (Minter): 
-Address: 0x41D2Cc9C670f42a1567780BD54f392B58Fde633F
-Name on OpenSea: "gabbyAng"
+Address: 0xD3453B04d05dfEBe2C9Db78f0f5aa1df26A03547
+Name on OpenSea: "Gabyy"
 ## Tokens Buyer: 
 Address: 0x24033467AA87ec97507F0bBc6D73ea9F9cc09496
-Name on OpenSea: "gabbyAng"
+Name on OpenSea: "GabbyBuyer"
 ## Tx Hashes for Selling Operations of 5 tokens:
-
+0x25fc7c6145db7849e3eb533050b25d8904e96e59cded468fbf15a637ef4fbd5b
+0x7df43bae6290a20e061688531fe2bea3256e5f22a619ac9ed3c6079ad4d5151e
+0x5b0c71ec7429952f97b90d1591ba67f7b6c0261bece414a6b6a728b15732cafd
+0x8c5c07617398dc11a926b5a35adae6fab8ad11c1f2ea2304480a3820c8b6c2dc
+0xa8bcfdbc282fd7ccf359a89572126a26c48561325aeaa659a71b7d08f79f9848
 ## Storefront Links for Unsold Tokens:
- 
+ https://testnets.opensea.io/assets/0xb933c9184de7b968197559e511a5c44aa90a28bf/11
+ https://testnets.opensea.io/assets/0xb933c9184de7b968197559e511a5c44aa90a28bf/12
+ https://testnets.opensea.io/assets/0xb933c9184de7b968197559e511a5c44aa90a28bf/13
+ https://testnets.opensea.io/assets/0xb933c9184de7b968197559e511a5c44aa90a28bf/14
+ https://testnets.opensea.io/assets/0xb933c9184de7b968197559e511a5c44aa90a28bf/15

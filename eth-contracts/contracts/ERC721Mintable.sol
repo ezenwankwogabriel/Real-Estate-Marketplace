@@ -595,8 +595,8 @@ contract ERC721MintableComplete is ERC721Metadata {
     event NewTokenMinted(address indexed owner, string indexed uri);
 
     constructor() ERC721Metadata(
-        'GABBY', 
-        'GBY', 
+        'GXALADE', 
+        'GXL', 
         'https://s3-us-west-2.amazonaws.com/udacity-blockchain/capstone/'
     ) public {
         // _registerInterface(_INTERFACE_ID_CAPSTONE_METADATA);

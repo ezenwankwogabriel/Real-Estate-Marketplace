@@ -38,7 +38,7 @@ contract SolnSquareVerifier is ERC721MintableComplete {
     uint8 _index,
     uint[2] memory a,
     uint[2][2] memory b,
-    uint[2] memory c, uint[2] memory input
+    uint[2] memory c, uint[1] memory input
   ) public returns(bool result) {
       bool isVerified = squareVerifier.verifyTx(a, b, c, input);
       require(isVerified == true, "Cannot mint a new token- Verification failed");

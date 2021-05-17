@@ -47,7 +47,7 @@ contract('TestERC721Mintable', accounts => {
     
             it('should transfer token from one owner to another', async function () { 
                 await contract.transferOwnership(account_two, { from: account_one });
-                const newOwner = await contract.getOwner();
+                const newOwner = await contract.owner();
                 assert.equal(newOwner, account_two)
             })
         });
@@ -66,7 +66,7 @@ contract('TestERC721Mintable', accounts => {
             })
     
             it('should return contract owner', async function () { 
-                var result = await contract.getOwner();
+                var result = await contract.owner();
                 assert.equal(result, account_two, "Contract Owner not returned correctly")
             })
     
